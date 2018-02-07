@@ -13,18 +13,30 @@ def encrypt(plaintext, key):
     ciphertext = ""
 
     for p in plaintext:
-        ciphertext += key[p]
+        if p in key:
+            ciphertext += key[p]
+        else:
+            if p == ' ':
+                ciphertext += c
+            else:
+                ciphertext += '-'
 
     # again, we expect no error
     return ciphertext
 
 
-def decrypt(message, key):
+def decrypt(ciphertext, key):
     # duplicated from encrypt :v
     # please be aware that the key used in decrypt is way in encrypt
     plaintext = ""
-    
+
     for c in ciphertext:
-        plaintext += key[c]
+        if c in key:
+            plaintext += key[c]
+        else:
+            if c == ' ':
+                plaintext += c
+            else:
+                plaintext += '-'
 
     return plaintext
